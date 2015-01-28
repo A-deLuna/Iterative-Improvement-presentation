@@ -1,0 +1,82 @@
+<style>
+#rowSum{
+  color: blue;
+  background-color: orange;
+}
+#colSum{
+  color:orange;
+  background-color: blue;
+}
+.tableInline{
+}
+.verticalButton{
+  height:20px;
+}
+.horizontalButton{
+  width:25px;
+}
+</style>
+<div ng-controller="View1Ctrl">
+  <form class="simple-form" name="form" novalidate>
+    M:<input type="text" ng-model="m" name="m"></input>
+    N:<input type="text" ng-model="n" name="n"></input>
+    <input type="button" ng-click="createTable()" value="create table"/> 
+
+  </form>
+  <p>This is the partial for view 1.</p>
+  <p> data size : {{data.length}}</p>
+  <table align="center">
+    <tr>
+      <td></td>
+      <td>
+        <table>
+          <tr>
+            <td ng-repeat="i in sumOfCols">
+              <input class="horizontalButton" type="button" ng-click="switchCol($index)">
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table class="tableInline">
+          <tr ng-repeat= "i in sumOfRows">
+            <td>
+              <input class="verticalButton" type="button" ng-click="switchRows($index)">
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <table border="1" class="tableInline" >
+          <tr ng-repeat="row in data track by $index">
+            <td ng-repeat="value in row track by $index">
+              {{value}} 
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <table class="tableInline" id="rowSum">
+          <tr ng-repeat = "sum in sumOfRows track by $index">
+            <td>{{sum}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <table border="1" id="colSum">
+          <tr>
+            <td ng-repeat = "sum in sumOfCols track by $index">
+              {{sum}}
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</div>
